@@ -101,11 +101,20 @@ if (sendBtn) {
     });
 
     if (valid) {
-      sendBtn.textContent = 'Sent ✓';
-      sendBtn.disabled = true;
-      sendBtn.style.opacity = '0.6';
-      success.classList.add('show');
-      name.value = ''; email.value = ''; msg.value = '';
+      const subject = encodeURIComponent("Portfolio Contact from " + name.value.trim());
+      const body = encodeURIComponent("Name: " + name.value.trim() + "\nEmail: " + email.value.trim() + "\n\nMessage:\n" + msg.value.trim());
+      
+      // Trigger the mailto link to open the user's default email client
+      window.location.href = `mailto:sabanganvince6@gmail.com?subject=${subject}&body=${body}`;
+      
+      sendBtn.textContent = 'Opening Mail App...';
+      setTimeout(() => {
+        sendBtn.textContent = 'Sent ✓';
+        sendBtn.disabled = true;
+        sendBtn.style.opacity = '0.6';
+        success.classList.add('show');
+        name.value = ''; email.value = ''; msg.value = '';
+      }, 2000);
     }
   });
 }
