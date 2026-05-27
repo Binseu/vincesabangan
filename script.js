@@ -101,20 +101,41 @@ if (sendBtn) {
     });
 
     if (valid) {
-      const subject = encodeURIComponent("Portfolio Contact from " + name.value.trim());
-      const body = encodeURIComponent("Name: " + name.value.trim() + "\nEmail: " + email.value.trim() + "\n\nMessage:\n" + msg.value.trim());
-      
-      // Trigger the mailto link to open the user's default email client
-      window.location.href = `mailto:sabanganvince6@gmail.com?subject=${subject}&body=${body}`;
-      
-      sendBtn.textContent = 'Opening Mail App...';
-      setTimeout(() => {
-        sendBtn.textContent = 'Sent ✓';
-        sendBtn.disabled = true;
-        sendBtn.style.opacity = '0.6';
-        success.classList.add('show');
-        name.value = ''; email.value = ''; msg.value = '';
-      }, 2000);
+      sendBtn.textContent = 'Sending...';
+      sendBtn.disabled = true;
+      sendBtn.style.opacity = '0.6';
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            access_key: 'e07ba16a-01c4-412f-be07-a11130ed5fe6',
+            subject: 'New Submission from Portfolio',
+            name: name.value.trim(),
+            email: email.value.trim(),
+            message: msg.value.trim()
+        })
+      })
+      .then(async (response) => {
+        if (response.status === 200) {
+          sendBtn.textContent = 'Sent ✓';
+          success.classList.add('show');
+          name.value = ''; email.value = ''; msg.value = '';
+        } else {
+          sendBtn.textContent = 'Failed to Send';
+          sendBtn.disabled = false;
+          sendBtn.style.opacity = '1';
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        sendBtn.textContent = 'Error';
+        sendBtn.disabled = false;
+        sendBtn.style.opacity = '1';
+      });
     }
   });
 }
