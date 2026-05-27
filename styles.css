@@ -116,6 +116,7 @@ body::before {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 4rem; color: var(--accent);
   letter-spacing: 0.15em;
+  margin-right: -0.15em; /* Fixes off-center visual alignment caused by letter-spacing on the last character */
   opacity: 0;
   animation: loaderFadeIn 0.6s ease 0.2s forwards;
 }
