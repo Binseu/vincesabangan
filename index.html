@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio — Your Name</title>
+  <meta name="description" content="Creative Developer & Digital Designer — crafting luxury digital experiences that resonate and endure."/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  <!-- PAGE LOADER -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-logo">YN.</div>
+    <div class="loader-bar"><div class="loader-bar-inner"></div></div>
+  </div>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">YN.</div>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">○</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Available for freelance · 2026</p>
+      <h1 class="hero-name">Your<br><em>Name</em></h1>
+      <p class="hero-role">Creative Developer &amp; Digital Designer</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn-primary">View Work</a>
+        <a href="#contact" class="btn-ghost">Let's Talk</a>
+      </div>
+      <div class="hero-scroll-hint">Scroll to explore</div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-image-block">
+        <div class="hero-abstract">
+          <div class="abstract-ring"></div>
+          <div class="abstract-ring"></div>
+          <div class="abstract-ring"></div>
+          <div class="abstract-dot"></div>
+        </div>
+      </div>
+      <div class="hero-number">01</div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">
+      About<br>
+      <span>01 / 04</span>
+    </div>
+    <div class="about-content reveal">
+      <h2>Crafting <em>digital experiences</em> that resonate and endure.</h2>
+      <p>I'm a designer and developer based wherever creativity thrives — obsessed with the intersection of form and function. Every pixel is intentional. Every interaction, considered.</p>
+      <p>With a background spanning product design, front-end development, and creative direction, I bring a multi-disciplinary lens to each project.</p>
+      <div class="about-stats">
+        <div>
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Years of experience</div>
+        </div>
+        <div>
+          <div class="stat-num">40+</div>
+          <div class="stat-label">Projects delivered</div>
+        </div>
+        <div>
+          <div class="stat-num">18</div>
+          <div class="stat-label">Happy clients</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="skills-header reveal">
+      <h2>What I <em>do</em></h2>
+      <div class="work-index">02 / 04</div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <span class="skill-icon">◈</span>
+        <h3>UI / UX Design</h3>
+        <p>Designing interfaces that feel inevitable. From wireframes to polished high-fidelity prototypes with a clear design system.</p>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Figma</span><span>95%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Prototyping</span><span>90%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Design Systems</span><span>85%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon">◉</span>
+        <h3>Frontend Development</h3>
+        <p>Translating design into pixel-perfect, performant code. Emphasis on animation, accessibility, and clean architecture.</p>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>React</span><span>88%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>TypeScript</span><span>80%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>CSS / GSAP</span><span>92%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon">◎</span>
+        <h3>Brand Identity</h3>
+        <p>Building visual identities that are cohesive, memorable, and grow with the brand. Logo, type, color — the full system.</p>
+        <div class="skill-bars">
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Logo Design</span><span>90%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Typography</span><span>95%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-label"><span>Art Direction</span><span>85%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="work-header reveal">
+      <h2>Selected <em>Work</em></h2>
+      <div class="work-index">03 / 04</div>
+    </div>
+    <div class="project-list">
+      <a href="#" class="project-item reveal">
+        <span class="project-num">001</span>
+        <div class="project-info">
+          <h3>Luminary — Brand &amp; Web</h3>
+          <p>Full identity system and interactive website for a fintech startup</p>
+        </div>
+        <span class="project-year">2025</span>
+        <span class="project-category">Brand / Web</span>
+        <span class="project-arrow">→</span>
+      </a>
+      <a href="#" class="project-item reveal">
+        <span class="project-num">002</span>
+        <div class="project-info">
+          <h3>Vantage — Product Design</h3>
+          <p>End-to-end UX for a SaaS analytics dashboard</p>
+        </div>
+        <span class="project-year">2025</span>
+        <span class="project-category">Product</span>
+        <span class="project-arrow">→</span>
+      </a>
+      <a href="#" class="project-item reveal">
+        <span class="project-num">003</span>
+        <div class="project-info">
+          <h3>Soleil — E-Commerce</h3>
+          <p>Luxury retail experience for a fashion house</p>
+        </div>
+        <span class="project-year">2024</span>
+        <span class="project-category">Web / Dev</span>
+        <span class="project-arrow">→</span>
+      </a>
+      <a href="#" class="project-item reveal">
+        <span class="project-num">004</span>
+        <div class="project-info">
+          <h3>Meridian — Motion &amp; 3D</h3>
+          <p>Interactive data visualization for a climate tech NGO</p>
+        </div>
+        <span class="project-year">2024</span>
+        <span class="project-category">Motion</span>
+        <span class="project-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="testimonials-header reveal">
+      <h2>Kind <em>Words</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="quote-mark">"</div>
+        <blockquote>Working with Your Name was the best creative decision we made this year. The brand identity exceeded every expectation and delivered results from day one.</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">AR</div>
+          <div class="author-info">
+            <strong>Alex Rivera</strong>
+            <span>CEO, Luminary</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="quote-mark">"</div>
+        <blockquote>An extraordinary eye for detail and a mind that understands both users and business. The dashboard redesign increased our retention by 34%.</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">SL</div>
+          <div class="author-info">
+            <strong>Sophie Laurent</strong>
+            <span>Product Lead, Vantage</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-left reveal">
+      <h2>Let's build something <em>remarkable</em> together.</h2>
+      <p>Open to select freelance projects and full-time opportunities. Response within 24 hours.</p>
+      <div class="contact-links">
+        <a href="mailto:hello@yourname.com" class="contact-link"><span>✉</span> hello@yourname.com</a>
+        <a href="https://linkedin.com" class="contact-link"><span>in</span> /in/yourname</a>
+        <a href="https://github.com" class="contact-link"><span>gh</span> /yourname</a>
+        <a href="https://dribbble.com" class="contact-link"><span>dr</span> /yourname</a>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="formName" placeholder="Full name" />
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="formEmail" placeholder="you@email.com" />
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea id="formMsg" placeholder="Tell me about your project..."></textarea>
+      </div>
+      <button class="btn-send" id="sendBtn">Send Message →</button>
+      <div class="form-success" id="formSuccess">Thank you! I'll be in touch within 24 hours.</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">YN.</div>
+    <div class="footer-copy">© 2026 Your Name. All rights reserved.</div>
+    <div class="footer-socials">
+      <a href="#">Twitter</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">GitHub</a>
+      <a href="#">Dribbble</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
