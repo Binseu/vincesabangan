@@ -505,6 +505,7 @@ footer {
   footer { flex-direction: column; gap: 1rem; text-align: center; }
   body { cursor: auto; }
   .cursor, .cursor-ring { display: none; }
+  .nav-play-btn { display: none; }
 }
 
 /* ===== TYPING TEST MODAL ===== */
