@@ -238,6 +238,21 @@ function handleTyping(e) {
     closeModal();
     return;
   }
+  if (e.key === 'Backspace') {
+    if (currentIdx > 0) {
+      currentIdx--;
+      const spans = typingPrompt.querySelectorAll('span');
+      if (spans[currentIdx].classList.contains('incorrect')) {
+        errors--;
+      }
+      spans[currentIdx].classList.remove('correct', 'incorrect');
+      
+      const accuracy = currentIdx > 0 ? Math.round(((currentIdx - errors) / currentIdx) * 100) : 100;
+      statAcc.textContent = Math.max(0, accuracy);
+      updateCursor();
+    }
+    return;
+  }
   
   if (e.key.length !== 1) return; // ignore meta keys
   if (e.ctrlKey || e.altKey || e.metaKey) return;
