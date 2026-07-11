@@ -21,41 +21,34 @@
   <div class="cursor-ring" id="cursorRing"></div>
 
   <!-- NAV -->
-  <nav>
+  <nav class="sidebar">
     <div class="nav-logo">VS.</div>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">○</button>
-    </div>
+    <ul class="nav-links">
+      <li><a href="#hero" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="theme-dot"></div>
   </nav>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="content-area">
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-left">
-      <p class="hero-eyebrow">Based in Quezon City · Available for work</p>
-      <h1 class="hero-name">Vince<br><em>Stephen</em></h1>
-      <p class="hero-role">System Engineer &amp; Full-Stack Developer</p>
-      <div class="hero-cta">
-        <a href="#work" class="btn-primary">View Work</a>
-        <a href="#contact" class="btn-ghost">Let's Talk</a>
-      </div>
-      <div class="hero-scroll-hint">Scroll to explore</div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-image-block">
-        <div class="hero-abstract">
-          <div class="abstract-ring"></div>
-          <div class="abstract-ring"></div>
-          <div class="abstract-ring"></div>
-          <div class="abstract-dot"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Quezon City · Available for work</p>
+      <h1 class="hero-name">VINCE STEPHEN</h1>
+      <hr class="hero-divider">
+      <div class="hero-byline">
+        <p class="hero-role">System Engineer &amp; Full-Stack Developer</p>
+        <div class="hero-cta">
+          <a href="#work" class="btn-primary">View Work</a>
+          <a href="#contact" class="btn-ghost">Let's Talk</a>
         </div>
       </div>
-      <div class="hero-number">01</div>
     </div>
   </section>
 
@@ -285,6 +278,7 @@
       <a href="mailto:sabanganvince6@gmail.com">Email</a>
     </div>
   </footer>
+  </main>
 
   <script src="script.js"></script>
 </body>

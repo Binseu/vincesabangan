@@ -38,21 +38,24 @@ document.querySelectorAll('a, button, input, textarea, .theme-toggle').forEach(e
   });
 });
 
-// ===== DARK / LIGHT TOGGLE =====
-const toggle = document.getElementById('themeToggle');
-const html = document.documentElement;
-const saved = localStorage.getItem('portfolio-theme');
-if (saved) html.setAttribute('data-theme', saved);
-else html.setAttribute('data-theme', 'light');
+// ===== ACTIVE NAV HIGHLIGHT =====
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav-links a');
 
-toggle.addEventListener('click', () => {
-  const current = html.getAttribute('data-theme');
-  const next = current === 'dark' ? 'light' : 'dark';
-  html.setAttribute('data-theme', next);
-  localStorage.setItem('portfolio-theme', next);
-  toggle.textContent = next === 'dark' ? '○' : '●';
-});
-toggle.textContent = html.getAttribute('data-theme') === 'dark' ? '○' : '●';
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').substring(1) === entry.target.id) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+}, { threshold: 0.3 });
+
+sections.forEach(section => navObserver.observe(section));
 
 // ===== SCROLL REVEAL =====
 const reveals = document.querySelectorAll('.reveal');
