@@ -506,3 +506,77 @@ footer {
   body { cursor: auto; }
   .cursor, .cursor-ring { display: none; }
 }
+
+/* ===== TYPING TEST MODAL ===== */
+.nav-bottom-actions {
+  display: flex; flex-direction: column; align-items: center; gap: 2rem;
+}
+.nav-play-btn {
+  background: none; border: none; color: var(--muted);
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  cursor: pointer; transition: color 0.3s;
+}
+.nav-play-btn:hover { color: var(--text); }
+
+.modal {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 1; transition: opacity 0.3s;
+}
+.modal.hidden {
+  opacity: 0; pointer-events: none;
+}
+.modal-content {
+  background: var(--surface); border: 1px solid var(--border);
+  width: 90%; max-width: 800px; padding: 3rem;
+  display: flex; flex-direction: column; gap: 2rem;
+}
+.modal-header, .modal-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'DM Mono', monospace; font-size: 0.7rem;
+  text-transform: uppercase; color: var(--muted);
+}
+.modal-stats {
+  display: flex; gap: 3rem; border-bottom: 1px solid var(--border);
+  padding-bottom: 2rem;
+}
+.stat-box { display: flex; flex-direction: column; }
+.stat-val {
+  font-family: 'Bebas Neue', sans-serif; font-size: 4rem;
+  line-height: 1; color: var(--text);
+}
+.stat-label {
+  font-family: 'DM Mono', monospace; font-size: 0.7rem;
+  color: var(--muted); letter-spacing: 0.1em;
+}
+
+.typing-area {
+  font-family: 'DM Mono', monospace; font-size: 1.5rem;
+  line-height: 1.6; color: var(--muted);
+  min-height: 120px;
+}
+.typing-prompt span { transition: color 0.1s, background 0.1s; }
+.typing-prompt span.correct { color: var(--text); }
+.typing-prompt span.incorrect { background: var(--text); color: var(--bg); }
+.typing-prompt span.active {
+  border-bottom: 2px solid var(--text);
+}
+
+.virtual-keyboard {
+  display: flex; flex-direction: column; gap: 8px;
+  align-items: center; margin-top: 1rem;
+}
+.kb-row { display: flex; gap: 8px; }
+.key {
+  width: 40px; height: 40px;
+  border: 1px solid var(--border); color: var(--muted);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Mono', monospace; font-size: 0.8rem;
+  text-transform: uppercase; transition: border-color 0.1s, color 0.1s;
+}
+.key.space { width: 240px; }
+.key.expected { border-color: var(--text); color: var(--text); }

@@ -142,3 +142,145 @@ if (sendBtn) {
     }
   });
 }
+
+// ===== TYPING TEST GAMIFICATION =====
+const playBtn = document.getElementById('playBtn');
+const typingModal = document.getElementById('typingModal');
+const typingPrompt = document.getElementById('typingPrompt');
+const virtualKeyboard = document.getElementById('virtualKeyboard');
+const statWpm = document.getElementById('statWpm');
+const statAcc = document.getElementById('statAcc');
+const statTime = document.getElementById('statTime');
+
+const WORD_LIST = ['the', 'be', 'of', 'and', 'a', 'to', 'in', 'he', 'have', 'it', 'that', 'for', 'they', 'I', 'with', 'as', 'not', 'on', 'she', 'at', 'by', 'this', 'we', 'you', 'do', 'but', 'from', 'or', 'which', 'one', 'would', 'all', 'will', 'there', 'say', 'who', 'make', 'when', 'can', 'more', 'if', 'no', 'man', 'out', 'other', 'so', 'what', 'time', 'up', 'go', 'about', 'than', 'into', 'could', 'state', 'only', 'new', 'year', 'some', 'take', 'come', 'these', 'know', 'see', 'use', 'get', 'like', 'then', 'first', 'any', 'work', 'now', 'may', 'such', 'give', 'over', 'think', 'most', 'even', 'find', 'day', 'also', 'after', 'way', 'many', 'must', 'look', 'before', 'great', 'back', 'through', 'long', 'where', 'much', 'should', 'well', 'people', 'down', 'own', 'just', 'because', 'good', 'each', 'those', 'feel', 'seem', 'how', 'high', 'too', 'place', 'little', 'world', 'very', 'still', 'nation', 'hand', 'old', 'life', 'tell', 'write', 'become', 'here', 'show', 'house', 'both', 'between', 'need', 'mean', 'call', 'develop', 'under', 'last', 'right', 'move', 'thing', 'general', 'school', 'never', 'same', 'another', 'begin', 'while', 'number', 'part', 'turn', 'real', 'leave', 'might', 'want', 'point', 'form', 'off', 'child', 'few', 'small', 'since', 'against', 'ask', 'late', 'home', 'interest', 'large', 'person', 'end', 'open', 'public', 'follow', 'during', 'present', 'without', 'again', 'hold', 'govern', 'around', 'possible', 'head', 'consider', 'word', 'program', 'problem', 'however', 'lead', 'system', 'set', 'order', 'eye', 'plan', 'run', 'keep', 'face', 'fact', 'group', 'play', 'stand', 'increase', 'early', 'course', 'change', 'help', 'line'];
+
+const KEYBOARD_LAYOUT = [
+  ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+  ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+  ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+  [' ']
+];
+
+let targetText = '';
+let currentIdx = 0;
+let errors = 0;
+let startTime = null;
+let timerInterval = null;
+let isPlaying = false;
+
+function generateKeyboard() {
+  virtualKeyboard.innerHTML = '';
+  KEYBOARD_LAYOUT.forEach(row => {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'kb-row';
+    row.forEach(key => {
+      const keyEl = document.createElement('div');
+      keyEl.className = `key ${key === ' ' ? 'space' : ''}`;
+      keyEl.dataset.key = key;
+      keyEl.textContent = key === ' ' ? 'SPACE' : key;
+      rowEl.appendChild(keyEl);
+    });
+    virtualKeyboard.appendChild(rowEl);
+  });
+}
+
+function initGame() {
+  clearInterval(timerInterval);
+  targetText = Array.from({length: 20}, () => WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)]).join(' ').toLowerCase();
+  typingPrompt.innerHTML = targetText.split('').map(c => `<span>${c}</span>`).join('');
+  currentIdx = 0;
+  errors = 0;
+  startTime = null;
+  isPlaying = true;
+  statWpm.textContent = '0';
+  statAcc.textContent = '100';
+  statTime.textContent = '0';
+  updateCursor();
+}
+
+function updateCursor() {
+  const spans = typingPrompt.querySelectorAll('span');
+  spans.forEach(s => s.classList.remove('active'));
+  if (currentIdx < spans.length) {
+    spans[currentIdx].classList.add('active');
+  }
+  
+  const keys = virtualKeyboard.querySelectorAll('.key');
+  keys.forEach(k => k.classList.remove('expected'));
+  if (currentIdx < targetText.length) {
+    const expectedKey = targetText[currentIdx];
+    const keyEl = virtualKeyboard.querySelector(`.key[data-key="${expectedKey}"]`);
+    if (keyEl) keyEl.classList.add('expected');
+  }
+}
+
+function startGameTimer() {
+  if (startTime) return;
+  startTime = Date.now();
+  timerInterval = setInterval(() => {
+    const timeElapsed = Math.floor((Date.now() - startTime) / 1000);
+    statTime.textContent = timeElapsed;
+    if (timeElapsed > 0) {
+      const wpm = Math.round((currentIdx / 5) / (timeElapsed / 60));
+      statWpm.textContent = wpm;
+    }
+  }, 1000);
+}
+
+function handleTyping(e) {
+  if (!isPlaying) return;
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    initGame();
+    return;
+  }
+  if (e.key === 'Escape') {
+    closeModal();
+    return;
+  }
+  
+  if (e.key.length !== 1) return; // ignore meta keys
+  if (e.ctrlKey || e.altKey || e.metaKey) return;
+  e.preventDefault();
+  startGameTimer();
+  
+  const spans = typingPrompt.querySelectorAll('span');
+  if (currentIdx >= targetText.length) return;
+  
+  const expectedChar = targetText[currentIdx];
+  if (e.key === expectedChar) {
+    spans[currentIdx].classList.add('correct');
+  } else {
+    spans[currentIdx].classList.add('incorrect');
+    errors++;
+  }
+  currentIdx++;
+  
+  const accuracy = Math.round(((currentIdx - errors) / currentIdx) * 100);
+  statAcc.textContent = Math.max(0, accuracy);
+  
+  if (currentIdx >= targetText.length) {
+    clearInterval(timerInterval);
+    isPlaying = false;
+    spans.forEach(s => s.classList.remove('active'));
+    virtualKeyboard.querySelectorAll('.key').forEach(k => k.classList.remove('expected'));
+  } else {
+    updateCursor();
+  }
+}
+
+function openModal() {
+  typingModal.classList.remove('hidden');
+  document.addEventListener('keydown', handleTyping);
+  generateKeyboard();
+  initGame();
+}
+
+function closeModal() {
+  typingModal.classList.add('hidden');
+  document.removeEventListener('keydown', handleTyping);
+  clearInterval(timerInterval);
+  isPlaying = false;
+}
+
+if (playBtn) playBtn.addEventListener('click', openModal);

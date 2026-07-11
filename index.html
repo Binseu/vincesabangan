@@ -30,7 +30,10 @@
       <li><a href="#work">Work</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <div class="theme-dot"></div>
+    <div class="nav-bottom-actions">
+      <button class="nav-play-btn" id="playBtn">PLAY</button>
+      <div class="theme-dot"></div>
+    </div>
   </nav>
 
   <!-- MAIN CONTENT AREA -->
@@ -279,6 +282,40 @@
     </div>
   </footer>
   </main>
+
+  <!-- TYPING TEST MODAL -->
+  <div id="typingModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title">TYPE SPEED // SIDE QUEST</span>
+        <span class="modal-close-hint">esc close</span>
+      </div>
+      <div class="modal-stats">
+        <div class="stat-box">
+          <span class="stat-val" id="statWpm">0</span>
+          <span class="stat-label">WPM</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-val" id="statAcc">100</span>
+          <span class="stat-label">ACC %</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-val" id="statTime">0</span>
+          <span class="stat-label">TIME s</span>
+        </div>
+      </div>
+      <div class="typing-area">
+        <div class="typing-prompt" id="typingPrompt"></div>
+      </div>
+      <div class="virtual-keyboard" id="virtualKeyboard">
+        <!-- Keyboard generated via JS -->
+      </div>
+      <div class="modal-footer">
+        <span>tab restart</span>
+        <span>esc close</span>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
