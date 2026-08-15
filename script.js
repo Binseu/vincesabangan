@@ -57,6 +57,23 @@ const navObserver = new IntersectionObserver((entries) => {
 
 sections.forEach(section => navObserver.observe(section));
 
+// ===== SMOOTH SCROLL & CLEAN URL =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href').substring(1);
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+      
+      // Update the URL without the '#'
+      const path = targetId === 'hero' ? '/' : `/${targetId}`;
+      window.history.pushState(null, '', path);
+    }
+  });
+});
+
 // ===== SCROLL REVEAL =====
 const reveals = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
@@ -85,6 +102,63 @@ const barObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 skillCards.forEach(card => barObserver.observe(card));
 
+// ===== TECH STACK MARQUEE =====
+const row1Items = [
+  { name: "Python", icon: "Tech Stack Logo/python-svgrepo-com.svg" },
+  { name: "C#", icon: "Tech Stack Logo/csharp-svgrepo-com.svg" },
+  { name: "PHP", icon: "Tech Stack Logo/php-logo-svgrepo-com.svg" },
+  { name: "Laravel", icon: "Tech Stack Logo/laravel-svgrepo-com.svg" },
+  { name: ".NET", icon: "Tech Stack Logo/dotnet-svgrepo-com.svg" },
+  { name: "MySQL", icon: "Tech Stack Logo/mysql-logo-svgrepo-com.svg" },
+];
+
+const row2Items = [
+  { name: "Power Apps", icon: "Tech Stack Logo/Powerapps-logo.svg", badge: "PA" },
+  { name: "Power Automate", icon: "Tech Stack Logo/PowerAutomate.svg", badge: "PA" },
+  { name: "VB.NET", icon: "Tech Stack Logo/vbnet-svgrepo-com.svg", badge: "VB" },
+  { name: "XAMPP", icon: "Tech Stack Logo/xampp-svgrepo-com.svg", badge: "XA" },
+];
+
+function makeBadge(iconWrap, item) {
+  iconWrap.innerHTML = "";
+  iconWrap.classList.add("badge");
+  iconWrap.textContent = item.badge || item.name.substring(0, 2).toUpperCase();
+}
+
+function buildRow(container, items) {
+  if (!container) return;
+  // Quadruple the list to guarantee seamless scrolling across wide screens
+  const doubled = [...items, ...items, ...items, ...items];
+  doubled.forEach(item => {
+    const el = document.createElement("div");
+    el.className = "tech-item";
+
+    const iconWrap = document.createElement("div");
+    iconWrap.className = "tech-icon";
+
+    if (item.icon) {
+      const img = document.createElement("img");
+      img.src = item.icon;
+      img.alt = item.name;
+      img.onerror = () => makeBadge(iconWrap, item);
+      iconWrap.appendChild(img);
+    } else {
+      makeBadge(iconWrap, item);
+    }
+
+    const label = document.createElement("div");
+    label.className = "tech-name";
+    label.textContent = item.name;
+
+    el.appendChild(iconWrap);
+    el.appendChild(label);
+    container.appendChild(el);
+  });
+}
+
+buildRow(document.getElementById("row1"), row1Items);
+buildRow(document.getElementById("row2"), row2Items);
+
 // ===== CONTACT FORM =====
 const sendBtn = document.getElementById('sendBtn');
 if (sendBtn) {
@@ -111,34 +185,34 @@ if (sendBtn) {
       fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
-            access_key: 'e07ba16a-01c4-412f-be07-a11130ed5fe6',
-            subject: 'New Submission from Portfolio',
-            name: name.value.trim(),
-            email: email.value.trim(),
-            message: msg.value.trim()
+          access_key: 'e07ba16a-01c4-412f-be07-a11130ed5fe6',
+          subject: 'New Submission from Portfolio',
+          name: name.value.trim(),
+          email: email.value.trim(),
+          message: msg.value.trim()
         })
       })
-      .then(async (response) => {
-        if (response.status === 200) {
-          sendBtn.textContent = 'Sent ✓';
-          success.classList.add('show');
-          name.value = ''; email.value = ''; msg.value = '';
-        } else {
-          sendBtn.textContent = 'Failed to Send';
+        .then(async (response) => {
+          if (response.status === 200) {
+            sendBtn.textContent = 'Sent ✓';
+            success.classList.add('show');
+            name.value = ''; email.value = ''; msg.value = '';
+          } else {
+            sendBtn.textContent = 'Failed to Send';
+            sendBtn.disabled = false;
+            sendBtn.style.opacity = '1';
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          sendBtn.textContent = 'Error';
           sendBtn.disabled = false;
           sendBtn.style.opacity = '1';
-        }
-      })
-      .catch(error => {
-        console.error(error);
-        sendBtn.textContent = 'Error';
-        sendBtn.disabled = false;
-        sendBtn.style.opacity = '1';
-      });
+        });
     }
   });
 }
@@ -186,7 +260,7 @@ function generateKeyboard() {
 
 function initGame() {
   clearInterval(timerInterval);
-  targetText = Array.from({length: 20}, () => WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)]).join(' ').toLowerCase();
+  targetText = Array.from({ length: 20 }, () => WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)]).join(' ').toLowerCase();
   typingPrompt.innerHTML = targetText.split('').map(c => `<span>${c}</span>`).join('');
   currentIdx = 0;
   errors = 0;
@@ -204,7 +278,7 @@ function updateCursor() {
   if (currentIdx < spans.length) {
     spans[currentIdx].classList.add('active');
   }
-  
+
   const keys = virtualKeyboard.querySelectorAll('.key');
   keys.forEach(k => k.classList.remove('expected'));
   if (currentIdx < targetText.length) {
@@ -246,22 +320,22 @@ function handleTyping(e) {
         errors--;
       }
       spans[currentIdx].classList.remove('correct', 'incorrect');
-      
+
       const accuracy = currentIdx > 0 ? Math.round(((currentIdx - errors) / currentIdx) * 100) : 100;
       statAcc.textContent = Math.max(0, accuracy);
       updateCursor();
     }
     return;
   }
-  
+
   if (e.key.length !== 1) return; // ignore meta keys
   if (e.ctrlKey || e.altKey || e.metaKey) return;
   e.preventDefault();
   startGameTimer();
-  
+
   const spans = typingPrompt.querySelectorAll('span');
   if (currentIdx >= targetText.length) return;
-  
+
   const expectedChar = targetText[currentIdx];
   if (e.key === expectedChar) {
     spans[currentIdx].classList.add('correct');
@@ -270,10 +344,10 @@ function handleTyping(e) {
     errors++;
   }
   currentIdx++;
-  
+
   const accuracy = Math.round(((currentIdx - errors) / currentIdx) * 100);
   statAcc.textContent = Math.max(0, accuracy);
-  
+
   if (currentIdx >= targetText.length) {
     clearInterval(timerInterval);
     isPlaying = false;
