@@ -425,25 +425,28 @@ body::before {
 
 /* ===== SKILLS ===== */
 #skills {
-  padding: 8rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6rem;
+  padding: 10rem 4rem;
   border-top: 1px solid var(--border);
   background: var(--surface);
   transition: background 0.5s ease;
+  position: relative;
 }
 
-.skills-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 5rem;
+.skills-content {
+  width: 100%;
 }
 
-.skills-header h2 {
-  font-size: clamp(2rem, 3.5vw, 3.2rem);
+.skills-content h2 {
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
   font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 3rem;
 }
 
-.skills-header h2 em {
+.skills-content h2 em {
   font-style: italic;
   color: var(--accent2);
 }
@@ -507,42 +510,39 @@ body::before {
   line-height: 1.7;
 }
 
-/* Progress bars */
-.skill-bars {
-  margin-top: 1.5rem;
+.skill-evidence {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1.2rem;
+  list-style: none;
 }
 
-.skill-bar-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
+.skill-evidence li {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text-soft);
+  position: relative;
+  padding-left: 1.2rem;
 }
 
-.skill-bar-label {
-  display: flex;
-  justify-content: space-between;
+.skill-evidence li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
   font-family: 'DM Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  color: var(--accent2);
+  font-size: 0.75rem;
 }
 
-.skill-bar-track {
-  width: 100%;
-  height: 2px;
-  background: var(--border);
-  border-radius: 1px;
-}
-
-.skill-bar-fill {
-  height: 100%;
-  width: 0;
-  background: var(--accent);
-  border-radius: 1px;
-  transition: width 1.2s ease-out;
+.skill-evidence li strong {
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  display: inline;
 }
 
 /* ===== TECH STACK MARQUEE ===== */
@@ -697,32 +697,28 @@ body::before {
 
 /* ===== WORK ===== */
 #work {
-  padding: 8rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6rem;
+  padding: 10rem 4rem;
   border-top: 1px solid var(--border);
+  position: relative;
 }
 
-.work-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 5rem;
+.work-content {
+  width: 100%;
 }
 
-.work-header h2 {
-  font-size: clamp(2rem, 3.5vw, 3.2rem);
+.work-content h2 {
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
   font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 3rem;
 }
 
-.work-header h2 em {
+.work-content h2 em {
   font-style: italic;
   color: var(--accent2);
-}
-
-.work-index {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  color: var(--muted);
-  letter-spacing: 0.15em;
 }
 
 .project-list {
@@ -821,24 +817,30 @@ body::before {
 }
 
 
-/* ===== TESTIMONIALS ===== */
+/* ===== AWARDS / TESTIMONIALS ===== */
 #testimonials {
-  padding: 8rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6rem;
+  padding: 10rem 4rem;
   border-top: 1px solid var(--border);
   background: var(--surface);
   transition: background 0.5s ease;
+  position: relative;
 }
 
-.testimonials-header {
-  margin-bottom: 5rem;
+.testimonials-content {
+  width: 100%;
 }
 
-.testimonials-header h2 {
-  font-size: clamp(2rem, 3.5vw, 3.2rem);
+.testimonials-content h2 {
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
   font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 3rem;
 }
 
-.testimonials-header h2 em {
+.testimonials-content h2 em {
   font-style: italic;
   color: var(--accent2);
 }
@@ -846,82 +848,116 @@ body::before {
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
+  gap: 2rem;
 }
 
-.testimonial-card {
+.award-card {
   background: var(--bg);
   padding: 3rem;
   border: 1px solid var(--border);
   position: relative;
   box-shadow: var(--shadow-sm);
-  /* ← modern lift */
-  transition: background 0.5s ease, box-shadow 0.4s ease;
-}
-
-.testimonial-card:hover {
-  box-shadow: var(--shadow-md);
-}
-
-.quote-mark {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 5rem;
-  color: var(--accent2);
-  opacity: 0.2;
-  line-height: 0.8;
-  margin-bottom: 1rem;
-}
-
-.testimonial-card blockquote {
-  font-size: 1.05rem;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--text-soft);
-  line-height: 1.8;
-  margin-bottom: 2rem;
-}
-
-.testimonial-author {
+  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.author-avatar {
+.award-card:hover {
+  background: var(--card-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.award-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.award-card:hover::before {
+  transform: scaleX(1);
+}
+
+.award-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.award-badge {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--faint);
+  background: var(--surface2);
   border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'DM Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--accent2);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--accent);
 }
 
-.author-info strong {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.author-info span {
+.award-date {
   font-family: 'DM Mono', monospace;
-  font-size: 0.6rem;
+  font-size: 0.65rem;
   color: var(--muted);
   letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.award-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  color: var(--text);
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.award-competition {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--accent2);
+  margin-top: -0.5rem;
+}
+
+.award-desc {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  font-weight: 300;
+  line-height: 1.6;
 }
 
 
 /* ===== CONTACT ===== */
 #contact {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6rem;
   padding: 10rem 4rem;
   border-top: 1px solid var(--border);
+  position: relative;
+}
+
+.contact-content {
+  width: 100%;
+}
+
+.contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8rem;
+  gap: 4rem;
 }
 
 .contact-left h2 {
@@ -1080,6 +1116,7 @@ footer {
 .footer-socials {
   display: flex;
   gap: 1.5rem;
+  align-items: center;
 }
 
 .footer-socials a {
@@ -1094,6 +1131,23 @@ footer {
 
 .footer-socials a:hover {
   color: var(--accent);
+}
+
+.footer-play-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.3s;
+  padding: 0;
+}
+
+.footer-play-btn:hover {
+  color: var(--text);
 }
 
 
@@ -1153,7 +1207,7 @@ footer {
     gap: 2rem;
   }
 
-  #about {
+  #about, #skills, #work, #testimonials, #contact {
     grid-template-columns: 1fr;
     gap: 3rem;
     padding: 6rem 2rem;
@@ -1163,11 +1217,7 @@ footer {
     position: static;
   }
 
-  #skills,
-  #tech-stack,
-  #work,
-  #testimonials,
-  #contact {
+  #tech-stack {
     padding: 6rem 2rem;
   }
 
@@ -1206,9 +1256,9 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  #contact {
+  .contact-grid {
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 3rem;
   }
 
   footer {

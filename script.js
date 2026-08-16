@@ -85,22 +85,15 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 reveals.forEach(el => revealObserver.observe(el));
 
-// ===== SKILL PROGRESS BARS =====
-const skillCards = document.querySelectorAll('.skill-card');
-const barObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const bars = entry.target.querySelectorAll('.skill-bar-fill');
-      bars.forEach((bar, i) => {
-        setTimeout(() => {
-          bar.style.width = bar.getAttribute('data-width') + '%';
-        }, i * 200);
-      });
-      barObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.3 });
-skillCards.forEach(card => barObserver.observe(card));
+// ===== PROTECT EMAIL FROM SCRAPING =====
+const emailLink = document.getElementById('email-link');
+if (emailLink) {
+  emailLink.href = 'mailto:' + 'sabanganvince6' + '@' + 'gmail.com';
+}
+const footerEmailLink = document.getElementById('footer-email-link');
+if (footerEmailLink) {
+  footerEmailLink.href = 'mailto:' + 'sabanganvince6' + '@' + 'gmail.com';
+}
 
 // ===== TECH STACK MARQUEE =====
 const row1Items = [
