@@ -1281,6 +1281,27 @@ footer {
   }
 }
 
+/* ===== PHONE-SIZE FIX ===== */
+@media (max-width: 480px) {
+  #hero {
+    padding: 2rem 1.25rem;
+  }
+
+  .hero-cta {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    padding: 0.9rem 1.5rem;
+  }
+
+  .hero-byline {
+    width: 100%;
+  }
+}
+
 /* ===== TYPING TEST MODAL ===== */
 .nav-bottom-actions {
   display: flex;
