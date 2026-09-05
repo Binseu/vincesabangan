@@ -1,3 +1,6 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./app/globals.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
 /* ===== COLOR SYSTEM — B&W HIGH CONTRAST MINIMALIST ===== */
 
 :root,
@@ -305,9 +308,12 @@ body::before {
   box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
   cursor: pointer;
+  width: -moz-fit-content;
   width: fit-content;
   max-width: 100%;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .status-pill:hover {
@@ -365,8 +371,10 @@ body::before {
 
 /* ===== REUSABLE EDITORIAL SECTION HEADER ===== */
 .section-header {
+  position: -webkit-sticky;
   position: sticky;
   top: 7rem;
+  height: -moz-fit-content;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -512,6 +520,7 @@ body::before {
 #about {
   display: grid;
   grid-template-columns: 1fr 2.4fr;
+  grid-gap: 5rem;
   gap: 5rem;
   padding: 8rem 4.5rem;
   border-top: 1px solid var(--border);
@@ -545,6 +554,7 @@ body::before {
 .about-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
   gap: 2rem;
   margin-top: 3.5rem;
   padding-top: 2.5rem;
@@ -572,6 +582,7 @@ body::before {
 #skills {
   display: grid;
   grid-template-columns: 1fr 2.4fr;
+  grid-gap: 5rem;
   gap: 5rem;
   padding: 8rem 4.5rem;
   border-top: 1px solid var(--border);
@@ -602,6 +613,7 @@ body::before {
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1.5rem;
   gap: 1.5rem;
 }
 
@@ -849,6 +861,7 @@ body::before {
 #work {
   display: grid;
   grid-template-columns: 1fr 2.4fr;
+  grid-gap: 5rem;
   gap: 5rem;
   padding: 8rem 4.5rem;
   border-top: 1px solid var(--border);
@@ -884,6 +897,7 @@ body::before {
   display: grid;
   grid-template-columns: 70px 1fr auto 120px;
   align-items: center;
+  grid-gap: 2rem;
   gap: 2rem;
   padding: 2.25rem 0;
   border-bottom: 1px solid var(--border);
@@ -979,6 +993,7 @@ body::before {
 #testimonials {
   display: grid;
   grid-template-columns: 1fr 2.4fr;
+  grid-gap: 5rem;
   gap: 5rem;
   padding: 8rem 4.5rem;
   border-top: 1px solid var(--border);
@@ -1009,6 +1024,7 @@ body::before {
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
   gap: 2rem;
 }
 
@@ -1105,6 +1121,7 @@ body::before {
 #contact {
   display: grid;
   grid-template-columns: 1fr 2.4fr;
+  grid-gap: 5rem;
   gap: 5rem;
   padding: 8rem 4.5rem;
   border-top: 1px solid var(--border);
@@ -1119,6 +1136,7 @@ body::before {
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
+  grid-gap: 4rem;
   gap: 4rem;
 }
 
@@ -1371,7 +1389,8 @@ footer {
   inset: 0;
   z-index: 1000;
   background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
