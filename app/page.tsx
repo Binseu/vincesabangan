@@ -2,6 +2,7 @@ import PageEffects from "@/components/PageEffects";
 import TechStack from "@/components/TechStack";
 import ContactForm from "@/components/ContactForm";
 import TypingTestModal from "@/components/TypingTestModal";
+import SectionHeader from "@/components/SectionHeader";
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
       </div>
 
       <nav className="sidebar">
-        <div className="nav-logo">VS.</div>
+        <a href="#hero" className="nav-logo">VS.</a>
         <ul className="nav-links">
           <li><a href="#hero" className="active">Home</a></li>
           <li><a href="#about">About</a></li>
@@ -24,15 +25,22 @@ export default function Home() {
           <li><a href="#work">Work</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <div className="nav-bottom-actions">
-          <div className="theme-dot"></div>
-        </div>
+        <div className="nav-bottom-actions"></div>
       </nav>
 
       <main className="content-area">
         <section id="hero">
           <div className="hero-content">
-            <p className="hero-eyebrow">Quezon City · Available for work</p>
+            <div
+              className="status-pill"
+              title="Current Status: Available for freelance &amp; full-time opportunities"
+            >
+              <span className="status-beacon"></span>
+              <span className="status-text">Available for work · Online now</span>
+              <span className="status-divider">·</span>
+              <span className="status-location">Quezon City, PH</span>
+            </div>
+
             <h1 className="hero-name">VINCE STEPHEN</h1>
             <hr className="hero-divider" />
             <div className="hero-byline">
@@ -46,10 +54,7 @@ export default function Home() {
         </section>
 
         <section id="about">
-          <div className="section-label">
-            About<br />
-            <span>01 / 04</span>
-          </div>
+          <SectionHeader kicker="Introduction" title="About" />
           <div className="about-content reveal">
             <h2>
               Architecting <em>scalable solutions</em> and automating enterprise workflows.
@@ -81,12 +86,9 @@ export default function Home() {
         </section>
 
         <section id="skills">
-          <div className="section-label">
-            Skills<br />
-            <span>02 / 04</span>
-          </div>
+          <SectionHeader kicker="Capabilities" title="What I do" />
           <div className="skills-content reveal">
-            <h2>What I <em>do</em></h2>
+            <h2>Core <em>Capabilities</em></h2>
             <div className="skills-grid">
               <div className="skill-card">
                 <span className="skill-icon">◈</span>
@@ -97,7 +99,7 @@ export default function Home() {
                 </p>
                 <ul className="skill-evidence">
                   <li>
-                    <strong>PHP & Laravel</strong> — Built and maintained production web applications at Denso Ten
+                    <strong>PHP &amp; Laravel</strong> — Built and maintained production web applications at Denso Ten
                     Solutions, handling backend logic and database architecture for internal enterprise tools.
                   </li>
                   <li>
@@ -109,7 +111,7 @@ export default function Home() {
                     reporting and automation systems.
                   </li>
                   <li>
-                    <strong>Web Development & FTP</strong> — Deployed and maintained live web applications, managing
+                    <strong>Web Development &amp; FTP</strong> — Deployed and maintained live web applications, managing
                     hosting and file transfer for production environments.
                   </li>
                 </ul>
@@ -120,11 +122,11 @@ export default function Home() {
                 <p>Streamlining enterprise operations through strategic workflow automation and platform integration.</p>
                 <ul className="skill-evidence">
                   <li>
-                    <strong>Power Apps & Power Automate</strong> — Automated enterprise workflows at Denso Ten,
+                    <strong>Power Apps &amp; Power Automate</strong> — Automated enterprise workflows at Denso Ten,
                     cutting manual process time across operations and engineering teams.
                   </li>
                   <li>
-                    <strong>VSTO Add-ins & Visual Studio</strong> — Built custom Office integrations to streamline
+                    <strong>VSTO Add-ins &amp; Visual Studio</strong> — Built custom Office integrations to streamline
                     day-to-day operational tasks.
                   </li>
                   <li>
@@ -135,7 +137,7 @@ export default function Home() {
               </div>
               <div className="skill-card">
                 <span className="skill-icon">◎</span>
-                <h3>QA & Testing</h3>
+                <h3>QA &amp; Testing</h3>
                 <p>Ensuring software reliability and optimizing legacy codebases through rigorous testing methodologies.</p>
                 <ul className="skill-evidence">
                   <li>
@@ -163,14 +165,11 @@ export default function Home() {
         <TechStack />
 
         <section id="work">
-          <div className="section-label">
-            Work<br />
-            <span>03 / 04</span>
-          </div>
+          <SectionHeader kicker="Experience" title="Professional history" />
           <div className="work-content reveal">
-            <h2>Professional <em>Experience</em></h2>
+            <h2>Career <em>Milestones</em></h2>
             <div className="project-list">
-              <a href="#" className="project-item">
+              <a href="#contact" className="project-item">
                 <span className="project-num">001</span>
                 <div className="project-info">
                   <h3>System Engineer</h3>
@@ -180,7 +179,7 @@ export default function Home() {
                 <span className="project-category">Full-Time</span>
                 <span className="project-arrow">→</span>
               </a>
-              <a href="#" className="project-item">
+              <a href="#contact" className="project-item">
                 <span className="project-num">002</span>
                 <div className="project-info">
                   <h3>Software Developer | QA &amp; Testing</h3>
@@ -190,7 +189,7 @@ export default function Home() {
                 <span className="project-category">Intern</span>
                 <span className="project-arrow">→</span>
               </a>
-              <a href="#" className="project-item">
+              <a href="#contact" className="project-item">
                 <span className="project-num">003</span>
                 <div className="project-info">
                   <h3>Software Developer</h3>
@@ -200,7 +199,7 @@ export default function Home() {
                 <span className="project-category">Intern</span>
                 <span className="project-arrow">→</span>
               </a>
-              <a href="#" className="project-item">
+              <a href="#contact" className="project-item">
                 <span className="project-num">004</span>
                 <div className="project-info">
                   <h3>Computer Engineering Technology</h3>
@@ -215,9 +214,9 @@ export default function Home() {
         </section>
 
         <section id="testimonials">
-          <div className="section-label">Awards</div>
+          <SectionHeader kicker="Recognition" title="Honors & awards" />
           <div className="testimonials-content reveal">
-            <h2>Honors & <em>Awards</em></h2>
+            <h2>Recognitions &amp; <em>Achievements</em></h2>
             <div className="testimonials-grid">
               <div className="award-card">
                 <div className="award-header-row">
@@ -239,7 +238,7 @@ export default function Home() {
                 <h3 className="award-title">3rd Place</h3>
                 <p className="award-competition">PUP Undergrad Thesis Competition</p>
                 <p className="award-desc">
-                  Awarded by the Research Institute for Science & Technology for outstanding undergraduate research
+                  Awarded by the Research Institute for Science &amp; Technology for outstanding undergraduate research
                   in advanced tech applications.
                 </p>
               </div>
@@ -248,10 +247,7 @@ export default function Home() {
         </section>
 
         <section id="contact">
-          <div className="section-label">
-            Contact<br />
-            <span>04 / 04</span>
-          </div>
+          <SectionHeader kicker="Get in touch" title="Let's talk" />
           <div className="contact-content reveal">
             <div className="contact-grid">
               <div className="contact-left">

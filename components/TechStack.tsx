@@ -71,7 +71,7 @@ export default function TechStack() {
   return (
     <section id="tech-stack" className="stack-section reveal">
       <div className="stack-header">
-        <div className="stack-eyebrow">Tech Stack</div>
+        <div className="stack-eyebrow">Toolkit</div>
         <h2 className="stack-heading">
           Tools I <em>build</em> with
         </h2>

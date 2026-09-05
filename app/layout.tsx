@@ -34,11 +34,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="light">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@300;400&family=Bebas+Neue&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Mono:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600&display=swap"
           rel="stylesheet"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('theme');if(s){document.documentElement.setAttribute('data-theme',s);}else{var p=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',p);}}catch(e){}})();`
+          }}
         />
         <script
           type="application/ld+json"

@@ -38,20 +38,28 @@ const KEYBOARD_LAYOUT = [
 export default function TypingTestModal() {
   const [open, setOpen] = useState(false);
   const [targetText, setTargetText] = useState("");
-  const [results, setResults] = useState<("" | "correct" | "incorrect")[]>(
-    []
-  );
+  const [results, setResults] = useState<("" | "correct" | "incorrect")[]>([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [wpm, setWpm] = useState(0);
   const [acc, setAcc] = useState(100);
   const [time, setTime] = useState(0);
   const [expectedKey, setExpectedKey] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
 
   const errorsRef = useRef(0);
   const startTimeRef = useRef<number | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const currentIdxRef = useRef(0);
   const isPlayingRef = useRef(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 900);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const generateText = () =>
     Array.from(
@@ -74,7 +82,7 @@ export default function TypingTestModal() {
     setWpm(0);
     setAcc(100);
     setTime(0);
-    setExpectedKey(text[0]);
+    setExpectedKey(text[0] || "");
   }, []);
 
   const startTimer = useCallback(() => {
@@ -123,7 +131,7 @@ export default function TypingTestModal() {
             return next;
           });
           currentIdxRef.current = newIdx;
-          setExpectedKey(targetText[newIdx]);
+          setExpectedKey(targetText[newIdx] || "");
           const accuracy =
             newIdx > 0
               ? Math.round(((newIdx - errorsRef.current) / newIdx) * 100)
@@ -161,7 +169,7 @@ export default function TypingTestModal() {
           isPlayingRef.current = false;
           setExpectedKey("");
         } else {
-          setExpectedKey(targetText[newIdx]);
+          setExpectedKey(targetText[newIdx] || "");
         }
         return newIdx;
       });
@@ -170,6 +178,10 @@ export default function TypingTestModal() {
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [open, targetText, initGame, closeModal, startTimer]);
+
+  if (isMobile) {
+    return null;
+  }
 
   const openModal = () => {
     setOpen(true);
@@ -182,62 +194,81 @@ export default function TypingTestModal() {
         [Play Side Quest]
       </button>
 
-      <div className={`modal ${open ? "" : "hidden"}`}>
-        <div className="modal-content">
-          <div className="modal-header">
-            <span className="modal-title">TYPE SPEED // SIDE QUEST</span>
-            <span className="modal-close-hint">esc close</span>
-          </div>
-          <div className="modal-stats">
-            <div className="stat-box">
-              <span className="stat-val">{wpm}</span>
-              <span className="stat-label">WPM</span>
+      {open && (
+        <div
+          className="modal"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeModal();
+          }}
+        >
+          <div className="modal-content">
+            <div className="modal-header">
+              <span className="modal-title">TYPE SPEED // SIDE QUEST</span>
+              <button
+                onClick={closeModal}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "var(--muted)",
+                  cursor: "pointer",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.85rem"
+                }}
+              >
+                ✕ esc close
+              </button>
             </div>
-            <div className="stat-box">
-              <span className="stat-val">{acc}</span>
-              <span className="stat-label">ACC %</span>
+            <div className="modal-stats">
+              <div className="stat-box">
+                <span className="stat-val">{wpm}</span>
+                <span className="stat-label">WPM</span>
+              </div>
+              <div className="stat-box">
+                <span className="stat-val">{acc}</span>
+                <span className="stat-label">ACC %</span>
+              </div>
+              <div className="stat-box">
+                <span className="stat-val">{time}</span>
+                <span className="stat-label">TIME s</span>
+              </div>
             </div>
-            <div className="stat-box">
-              <span className="stat-val">{time}</span>
-              <span className="stat-label">TIME s</span>
-            </div>
-          </div>
-          <div className="typing-area">
-            <div className="typing-prompt">
-              {targetText.split("").map((c, i) => (
-                <span
-                  key={i}
-                  className={`${results[i] || ""} ${
-                    i === currentIdx ? "active" : ""
-                  }`}
-                >
-                  {c}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="virtual-keyboard">
-            {KEYBOARD_LAYOUT.map((row, ri) => (
-              <div className="kb-row" key={ri}>
-                {row.map((key) => (
-                  <div
-                    key={key}
-                    className={`key ${key === " " ? "space" : ""} ${
-                      key === expectedKey ? "expected" : ""
+            <div className="typing-area">
+              <div className="typing-prompt">
+                {targetText.split("").map((c, i) => (
+                  <span
+                    key={i}
+                    className={`${results[i] || ""} ${
+                      i === currentIdx ? "active" : ""
                     }`}
                   >
-                    {key === " " ? "SPACE" : key}
-                  </div>
+                    {c}
+                  </span>
                 ))}
               </div>
-            ))}
-          </div>
-          <div className="modal-footer">
-            <span>tab restart</span>
-            <span>esc close</span>
+            </div>
+            <div className="virtual-keyboard">
+              {KEYBOARD_LAYOUT.map((row, ri) => (
+                <div className="kb-row" key={ri}>
+                  {row.map((key) => (
+                    <div
+                      key={key}
+                      className={`key ${key === " " ? "space" : ""} ${
+                        key === expectedKey ? "expected" : ""
+                      }`}
+                    >
+                      {key === " " ? "SPACE" : key}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <div className="modal-footer">
+              <span>tab restart</span>
+              <span>esc close</span>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

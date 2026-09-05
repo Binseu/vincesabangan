@@ -41,8 +41,8 @@ export default function PageEffects() {
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
         targetElement.scrollIntoView({ behavior: "smooth" });
-        const path = targetId === "hero" ? "/" : `/${targetId}`;
-        window.history.pushState(null, "", path);
+        const hash = targetId === "hero" ? "" : `#${targetId}`;
+        window.history.replaceState(null, "", window.location.pathname + hash);
       }
     };
     anchors.forEach((anchor) =>
